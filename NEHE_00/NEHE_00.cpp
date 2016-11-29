@@ -1,4 +1,4 @@
-// NEHE_00.cpp : Defines the entry point for the console application.
+п»ї// NEHE_00.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
@@ -15,28 +15,29 @@ float WinWid = 800.0;
 float WinHei = 800.0;
 int rot = 0;
 int axis[2];
-#include "functions.h" // различные функции
+unsigned int textures[1]; //РјР°СЃСЃРёРІ РєРѕР»РёС‡РµСЃС‚РІР° С‚РµРєСЃС‚СѓСЂ
+#include "functions.h" // СЂР°Р·Р»РёС‡РЅС‹Рµ С„СѓРЅРєС†РёРё
 
 
 using namespace std;
 int main(int argc, char** argv) {
 
-	//инициализация
-	glutInit(&argc, argv); // глобальная инициализация
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);// инициализация мода дисплея(как рисуем)
-	glutInitWindowSize(WinWid, WinHei); // инициализация размеров дисплея/окна
-	glutInitWindowPosition(500, 100); // инициализация позиции окна
-	glutCreateWindow("Super <openGL> balalaika"); //создание окна
+	//РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
+	glutInit(&argc, argv); // РіР»РѕР±Р°Р»СЊРЅР°СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);// РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РјРѕРґР° РґРёСЃРїР»РµСЏ(РєР°Рє СЂРёСЃСѓРµРј)
+	glutInitWindowSize(WinWid, WinHei); // РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЂР°Р·РјРµСЂРѕРІ РґРёСЃРїР»РµСЏ/РѕРєРЅР°
+	glutInitWindowPosition(500, 100); // РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРѕР·РёС†РёРё РѕРєРЅР°
+	glutCreateWindow("Super <openGL> balalaika"); //СЃРѕР·РґР°РЅРёРµ РѕРєРЅР°
 
 
-	glutTimerFunc(33, Timer, 0); // регистрация функции анимации(функция таймера)
-	glutSpecialFunc(SKeyboard);// регистрация функций клавиатуры 2 для особых клавиш
+	glutTimerFunc(33, Timer, 0); // СЂРµРіРёСЃС‚СЂР°С†РёСЏ С„СѓРЅРєС†РёРё Р°РЅРёРјР°С†РёРё(С„СѓРЅРєС†РёСЏ С‚Р°Р№РјРµСЂР°)
+	glutSpecialFunc(SKeyboard);// СЂРµРіРёСЃС‚СЂР°С†РёСЏ С„СѓРЅРєС†РёР№ РєР»Р°РІРёР°С‚СѓСЂС‹ 2 РґР»СЏ РѕСЃРѕР±С‹С… РєР»Р°РІРёС€
 
-	//регистрация
-	glutDisplayFunc(Draw); //регистрация функции рисования
-	Initialize(); //регистрация функции инициализация
+	//СЂРµРіРёСЃС‚СЂР°С†РёСЏ
+	glutDisplayFunc(Draw); //СЂРµРіРёСЃС‚СЂР°С†РёСЏ С„СѓРЅРєС†РёРё СЂРёСЃРѕРІР°РЅРёСЏ
+	Initialize(); //СЂРµРіРёСЃС‚СЂР°С†РёСЏ С„СѓРЅРєС†РёРё РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
 
-	glutMainLoop(); //запуск главного цикла(стандартная функция GLUT)
+	glutMainLoop(); //Р·Р°РїСѓСЃРє РіР»Р°РІРЅРѕРіРѕ С†РёРєР»Р°(СЃС‚Р°РЅРґР°СЂС‚РЅР°СЏ С„СѓРЅРєС†РёСЏ GLUT)
 	_getch();
 	return 1;
 }
