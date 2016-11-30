@@ -4,14 +4,14 @@ void LoadTextures();
 void Initialize() {
 
 	LoadTextures();
-	glEnable(GL_TEXTURE_2D); //разрешение накладывать текстуру
 
 	glClearColor(0.0, 0.0, 0.0, 0.0);//каким цветом всё стереть | цвет очистки
 	glMatrixMode(GL_PROJECTION);//тип матрицы который будет изменять в последующем GL_PROJECTION - матрица проекций
 	glLoadIdentity(); //загружаем единичную матрицу
 	glOrtho(-WinWid/2, WinWid/2, -WinHei /2, WinHei/2, -WinHei/2, WinHei/2); //задаётся сетка координат(матрица проекции) относительно центра экрана
 	//glOrtho(0, WinWid, WinHei, 0, 1, 0); //задаётся сетка координат(матрица проекции) относительно левого верхнего угла
-	
+	glMatrixMode(GL_MODELVIEW);
+
 	AXIS_LIST_INIT();
 	
 
@@ -22,6 +22,7 @@ void Draw() {
 	glEnable(GL_DEPTH_TEST); //включаем глубину
 	
 	// рисуем пирамидку
+	
 	glPushMatrix();
 	glTranslatef(-100.0, 0.0, 0.0);
 	glRotatef(rot, 1.0, 1.0, 0.0);
@@ -44,9 +45,12 @@ void Draw() {
 		}glEnd();
 	}glPopMatrix();
 	glPopMatrix();
+	
 
 	// рисуем кубик
+	glEnable(GL_TEXTURE_2D); //разрешение накладывать текстуру
 	glPushMatrix(); {
+		//glScalef(5, 5, 5);
 		glTranslatef(100.0, 0.0, 0.0);
 		glRotatef(rot, 1.0, 1.0, 0.0);
 		for (int i(0); i < 4; i++) {
@@ -62,6 +66,8 @@ void Draw() {
 			}glPopMatrix();
 		}
 	}glPopMatrix();
+	glDisable(GL_TEXTURE_2D);
+
 
 	glDisable(GL_DEPTH_TEST); // выключаем глубину
 	glutSwapBuffers(); //при использовании двойного буфера GLUT_DOUBLE
@@ -117,7 +123,6 @@ void AXIS_LIST_INIT()
 
 		glBegin(GL_QUADS); {
 			glBindTexture(GL_TEXTURE_2D, textures[0]); // переключаемся на первую текстуру
-
 			//glColor3f(1.0, 1.0, 1.0);
 			glTexCoord2f(0.0, 0.0);		glVertex3f(-50.0, -50.0, 50.0);
 			//glColor3f(0.0, 0.0, 1.0);
