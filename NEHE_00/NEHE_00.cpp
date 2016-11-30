@@ -9,13 +9,23 @@
 #include <math.h>
 #include <cstdlib>
 
+bool  blend = false; // Смешивание НЕТ/ДА?
+bool light = false;      // Свет ВКЛ / ВЫКЛ
+float dx = 0.0;       // X скорость вращения
+float dy = 0.0;       // Y скорость вращения
+float dz = 0.0; // Сдвиг вглубь экрана
+
+float LightAmbient[4] = { 0.5, 0.5, 0.5, 1.0 };
+float LightDiffuse[4] = { 1.0, 1.0, 1.0, 1.0 };
+float LightPosition[4] = { 0.0, 0.0, 1.0, 1.0 };
 
 
 float WinWid = 800.0;
 float WinHei = 800.0;
-int rot = 0;
+int rot_x = 0;
+int rot_y = 0;
 int axis[2];
-unsigned int textures[1]; //массив количества текстур
+unsigned int textures[3]; //массив количества текстур
 #include "functions.h" // различные функции
 
 
@@ -32,11 +42,11 @@ int main(int argc, char** argv) {
 
 	glutTimerFunc(33, Timer, 0); // регистрация функции анимации(функция таймера)
 	glutSpecialFunc(SKeyboard);// регистрация функций клавиатуры 2 для особых клавиш
+	glutKeyboardFunc(Keyboard); // регистрация функций клавиатуры 1
 
 	//регистрация
 	glutDisplayFunc(Draw); //регистрация функции рисования
 	Initialize(); //регистрация функции инициализация
-
 	glutMainLoop(); //запуск главного цикла(стандартная функция GLUT)
 	_getch();
 	return 1;
